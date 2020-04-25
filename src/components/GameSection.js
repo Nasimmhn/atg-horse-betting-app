@@ -20,7 +20,7 @@ const gameOptions = [
 export const GameSection = () => {
 
   const [search, setSearch] = useState("")
-  const [data, setData] = useState({})
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     // Only fetch if search string is one of the 4 game types
@@ -29,13 +29,13 @@ export const GameSection = () => {
         .then((res) => res.json())
         .then((json) => {
           setData(json)
-          console.log(json)
+          // console.log(json)
         })
     }
   }, [search])
 
   const handleInput = (search) => {
-    console.log("search", search)
+    // console.log("search", search)
     setSearch(search)
 
   }
@@ -53,7 +53,9 @@ export const GameSection = () => {
         onSelect={(e) => handleInput(e.target.value)}
       />
 
-      <GameInfo data={data} />
+      {data &&
+        <GameInfo data={data} />
+      }
     </Container>
   )
 }
