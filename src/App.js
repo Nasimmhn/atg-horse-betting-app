@@ -3,16 +3,16 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 // Components
-import { Input } from './components/Input'
+import { GameInfo } from './components/GameInfo'
 
 
 export const App = () => {
   return (
     <AppContainer>
       <Header> Header </Header>
-      <MainContainer >
-        <Input />
-      </MainContainer >
+      <Main>
+        <GameInfo />
+      </Main>
       <Footer> Footer </Footer>
     </AppContainer>
   )
@@ -30,20 +30,17 @@ const AppContainer = styled.div`
     "main"
     "foot";
 `
-
 const Header = styled.header`
   grid-area: head;
   background: lightyellow;
 `
+const Main = styled.main`
+  grid-area: main;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: lightgreen;
+`
 const Footer = styled.footer`
   grid-area: foot;
   background: lightslategray;
-`
-
-const MainContainer = styled.main`
-  grid-area: main;
-  padding-top: 50px;
-  background: lightgreen;
-
-  
 `
