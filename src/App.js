@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 // Components
-import { GameInfo } from './components/GameInfo'
+import { GameSection } from './components/GameSection'
 
 
 export const App = () => {
@@ -11,7 +11,7 @@ export const App = () => {
     <AppContainer>
       <Header> Header </Header>
       <Main>
-        <GameInfo />
+        <GameSection />
       </Main>
       <Footer> Footer </Footer>
     </AppContainer>
