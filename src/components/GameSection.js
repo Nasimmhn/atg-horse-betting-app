@@ -19,7 +19,7 @@ const gameOptions = [
 ]
 export const GameSection = () => {
 
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState(null)
   const [data, setData] = useState(null)
 
   useEffect(() => {
@@ -29,28 +29,24 @@ export const GameSection = () => {
         .then((res) => res.json())
         .then((json) => {
           setData(json)
-          // console.log(json)
         })
     }
   }, [search])
 
-  const handleInput = (search) => {
-    // console.log("search", search)
-    setSearch(search)
-
+  const handleInputChange = (e, value) => {
+    setSearch(value)
   }
 
   return (
     <Container>
 
       <Autocomplete
-        id="combo-box-demo"
+        id="search-input"
         options={gameOptions}
         getOptionLabel={(option) => option.title}
         style={{ width: 200 }}
         renderInput={(params) => <TextField {...params} label="Search" variant="outlined" />}
-        onInput={(e) => handleInput(e.target.value)}
-        onSelect={(e) => handleInput(e.target.value)}
+        onInputChange={handleInputChange}
       />
 
       {data &&
