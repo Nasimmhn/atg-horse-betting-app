@@ -7,7 +7,7 @@ import styled from 'styled-components/macro'
 import moment from 'moment'
 
 
-export const GameBar = ({ gameId, title, betType }) => {
+export const Game = ({ gameId, title, betType }) => {
   const [gameData, setGameData] = useState(null)
   const [race, setRace] = useState(null)
 
@@ -26,8 +26,8 @@ export const GameBar = ({ gameId, title, betType }) => {
   }
 
   return (
-    <div>
-      <GameBarContainer>
+    <>
+      <GameBar>
         {gameData &&
           <>
             <BetType><BetText>{betType}</BetText></BetType>
@@ -38,7 +38,7 @@ export const GameBar = ({ gameId, title, betType }) => {
             ))}
           </>
         }
-      </GameBarContainer>
+      </GameBar>
 
       <InfoArea>
         <Title> {title}</Title>
@@ -71,7 +71,7 @@ export const GameBar = ({ gameId, title, betType }) => {
           </>
         }
       </InfoArea>
-    </div>
+    </>
 
   )
 }
@@ -130,10 +130,12 @@ const RaceText = styled.span`
   transform: skew(30deg);
 `
 const InfoArea = styled.div`
+  padding: 10px;
+  box-sizing: border-box;
   width: 520px;
   background: lightblue;
 `
-const GameBarContainer = styled.div`
+const GameBar = styled.div`
   position: relative;
   width: 520px;
   height: 50px;

@@ -9,7 +9,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
 // Components
-import { GameBar } from './GameBar'
+import { Game } from './Game'
 
 const gameOptions = [
   { value: 'V4', title: 'V4' },
@@ -67,7 +67,9 @@ export const GameSection = () => {
           onInputChange={handleInputChange}
         />
       </SearchBar>
-      {data && <GameBar title={title} betType={betType} gameId={data.id} />}
+      {data && 
+        <Game title={title} betType={betType} gameId={data.id} />
+      }
     </Section>
   )
 }
@@ -79,7 +81,6 @@ const SearchBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
 `
 
 const Section = styled.section`
