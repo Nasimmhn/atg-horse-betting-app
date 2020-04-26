@@ -41,24 +41,33 @@ export const GameBar = ({ gameId, title, betType }) => {
       </GameBarContainer>
 
       <InfoArea>
-        {/* Race number 
-          - Race name 
-          - Race start time 
-          - Starts information (see below)
-        For each start: 
-          - Start number 
-          - Horse name 
-          - Driver/rider first name + last name 
-          - Trainer first name + last name (expanded view) 
-          - Name of the horse father (expanded view) */}
         <Title> {title}</Title>
+        <hr />
         {race &&
           <>
-            <Grid>
-              <GridTitle>Number:</GridTitle>{race.number}
-              <GridTitle>Race:</GridTitle> {race.name}
-              <GridTitle>Start time:</GridTitle> {moment(race.startTime).format("HH:MM")}
-            </Grid>
+            <RaceGrid>
+              <GridTitle>Number:</GridTitle> <div>{race.number}</div>
+              <GridTitle>Race:</GridTitle> <div>{race.name}</div>
+              <GridTitle>Start time:</GridTitle> <div>{moment(race.startTime).format("HH:MM")}</div>
+            </RaceGrid>
+            <hr />
+            <StartGrid>
+              <GridHeader>Number</GridHeader>
+              <GridHeader>Horse</GridHeader>
+              <GridHeader>Driver</GridHeader>
+              <GridHeader>Trainer</GridHeader>
+              <GridHeader>Horse father</GridHeader>
+              {race.starts.map(start => (
+                <React.Fragment key={start.number}>
+                  <GridTextCenter>{start.number}</GridTextCenter>
+                  <div>{start.horse.name}</div>
+                  <div>{start.driver.firstName} {start.driver.lastName} </div>
+                  <div>{start.horse.trainer.firstName} {start.horse.trainer.lastName}</div>
+                  <div>{start.horse.pedigree.father.name}</div>
+
+                </React.Fragment>
+              ))}
+            </StartGrid>
           </>
         }
       </InfoArea>
@@ -73,15 +82,30 @@ const Title = styled.h3`
   color: #094897;
   font-size: 30px;
 `
+const StartGrid = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 10px;
+`
 
-const Grid = styled.div`
+const RaceGrid = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
   grid-column-gap: 10px;
 `
-const GridTitle = styled.span`
+const GridTitle = styled.div`
   font-weight: bold;
   text-align: right;
+`
+
+const GridTextCenter = styled.div`
+  text-align: center;
+`
+
+const GridHeader = styled.div`
+  color: black;
+  font-weight: bold;
+  text-align: left;
 `
 
 const RaceButton = styled.button`
@@ -107,7 +131,6 @@ const RaceText = styled.span`
 `
 const InfoArea = styled.div`
   width: 520px;
-  height: 200px;
   background: lightblue;
 `
 const GameBarContainer = styled.div`
