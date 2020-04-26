@@ -54,25 +54,32 @@ export const GameSection = () => {
 
   return (
     <Section>
-
-      <SearchInput
-        id="search-input"
-        options={gameOptions}
-        getOptionLabel={(option) => option.title}
-        style={{
-          width: 200,
-          background: 'white'
-        }}
-        renderInput={(params) => <TextField {...params} label="Search" variant="filled" />}
-        onInputChange={handleInputChange}
-      />
-
+      <SearchBar>
+        <Autocomplete
+          id="search-input"
+          options={gameOptions}
+          getOptionLabel={(option) => option.title}
+          style={{
+            width: 200,
+            background: 'white'
+          }}
+          renderInput={(params) => <TextField {...params} label="Search" variant="filled" />}
+          onInputChange={handleInputChange}
+        />
+      </SearchBar>
       {data && <GameBar title={title} betType={betType} gameId={data.id} />}
     </Section>
   )
 }
 
-const SearchInput = styled(Autocomplete)`
+const SearchBar = styled.div`
+  background: transparent;
+  padding: 25px 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 `
 
 const Section = styled.section`
