@@ -12,7 +12,7 @@ export const App = () => {
       <Main>
         <GameSection />
         <ImageText>
-          <div style={{ textAlign: 'center' }}>Image: "Shake It Cerry", by <Link href="https://omatg.se/media/#/images/shake-it-cerry-559459"> ATG.se</Link> Licensed under <Link href="https://creativecommons.org/licenses/by/2.0/"> CC BY 2.0 </Link></div>
+          <div style={{ textAlign: 'center' }}>Image: "Shake It Cerry", by <Link href="https://omatg.se/media/#/images/shake-it-cerry-559459"> ATG</Link> Licensed under <Link href="https://creativecommons.org/licenses/by/2.0/"> CC</Link></div>
         </ImageText>
       </Main>
       <Footer>
@@ -23,10 +23,10 @@ export const App = () => {
 }
 
 const AppContainer = styled.div`
+  min-width: 300px;
   margin: 0px;
   padding: 0px;
   min-height: 100vh;
-  /* background: #094897; */
   display: grid;
   grid-template-rows: 0px auto 50px;
   grid-template-areas:
@@ -38,7 +38,6 @@ const Header = styled.header`
   grid-area: head;
   background: #094897;
 `
-
 const Link = styled.a`
   color: black;
   & :hover, :active {

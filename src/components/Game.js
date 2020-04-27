@@ -171,25 +171,32 @@ const Title = styled.h3`
   font-style: italic;
 `
 const StartGrid = styled.div`
-  margin-left: 13px;
+  margin-left: 0px;
   display: grid;
-  grid-template-columns: 80px 220px auto;
+  grid-template-columns: 25px 120px auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  @media (min-width: 600px) {
+    margin-left: 13px;
+    grid-template-columns: 80px 220px auto;
+  }
 `
 const RaceHeader = styled.div`
   background: #094897;
 `
 const RaceGrid = styled.div`
-  font-size: 1.2em;
+  font-size: 1em;
   color: white;
   margin: 0px 0px 0px 10px;
   padding: 15px;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto 50px;
+  grid-template-rows: auto auto auto;
   grid-column-gap: 20px;
   grid-row-gap: 10px;
+  @media (min-width: 600px) {
+    font-size: 1.2em;
+  }
 `
 const GridTitle = styled.div`
   font-weight: bold;
@@ -209,21 +216,28 @@ const InfoArea = styled.div`
 `
 const Container = styled.div`
   box-sizing: border-box;
-  width: 650px;
+  width: 95%;
   -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  @media (min-width: 600px) {
+    width: 650px;
+  }
 `
 const GameBar = styled.div`
   border-radius: 10px 10px 0px 0px;
   background: #094897;
-  height: 70px;
+  height: 45px;
   justify-content: flex-start;
   display: grid;
-  grid-template-columns: 110px repeat(7, 1fr) 25px;
+  grid-template-columns: 65px repeat(7, 1fr) 25px;
   border-bottom: 1px solid gray;
   && button:first-of-type{
     border-left: 1px solid gray;
+  }
+  @media (min-width: 600px) {
+    height: 70px;
+    grid-template-columns: 110px repeat(7, 1fr) 25px;
   }
 `
 const BetType = styled.div`
@@ -236,8 +250,10 @@ const BetType = styled.div`
 const BetText = styled.span`
   color: #ffdd00;
   font-weight: bold;
-  font-size: 40px;
-
+  font-size: 25px;
+  @media (min-width: 600px) {
+    font-size: 40px;
+  }
 `
 
 const ButtonText = styled.span`
