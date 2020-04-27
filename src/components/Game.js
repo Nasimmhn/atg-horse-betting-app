@@ -106,15 +106,17 @@ export const Game = ({ gameId, title, betType }) => {
       </GameBar>
 
       <InfoArea>
-        <Title> {title}</Title>
+
         {race &&
           <>
-            <RaceGrid>
-              <GridTitle>Number</GridTitle> <GridText>{race.number}</GridText>
-              {race.name && <><GridTitle>Race</GridTitle> <GridText>{race.name}</GridText></>}
-              <GridTitle>Start time</GridTitle> <GridText>{moment(race.startTime).format("HH:MM")}</GridText>
-            </RaceGrid>
-
+            <RaceHeader>
+              <Title> {title}</Title><div></div>
+              <RaceGrid>
+                <GridTitle>Number</GridTitle> <GridText>{race.number}</GridText>
+                {race.name && <><GridTitle>Race</GridTitle> <GridText>{race.name}</GridText></>}
+                <GridTitle>Start time</GridTitle> <GridText>{moment(race.startTime).format("HH:MM")}</GridText>
+              </RaceGrid>
+            </RaceHeader>
 
 
             {race.starts.map(start => (
@@ -155,14 +157,15 @@ export const Game = ({ gameId, title, betType }) => {
         }
       </InfoArea>
     </>
-
   )
 }
 const Title = styled.h3`
+  box-sizing: border-box;
   text-align: center;
   margin: 0px;
-  padding: 5px;
-  color: #094897;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  color: #ffdd00;
   font-size: 30px;
   font-style: italic;
 `
@@ -173,12 +176,18 @@ const StartGrid = styled.div`
   grid-row-gap: 0px;
 `
 
-const RaceGrid = styled.div`
+const RaceHeader = styled.div`
+  height: 180px;
+  border-radius: 5px 5px 0px 0px;
   background: #094897;
+`
+
+const RaceGrid = styled.div`
   color: white;
   padding: 15px;
   display: grid;
   grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-column-gap: 20px;
   grid-row-gap: 10px;
 `
@@ -187,9 +196,7 @@ const GridTitle = styled.div`
   text-align: left;
 `
 const GridText = styled.div`
-  
 `
-
 const GridHeader = styled.div`
   margin: 0px;
   padding: 0px;
@@ -197,7 +204,6 @@ const GridHeader = styled.div`
   color: darkgray;
   font-weight: bold;
 `
-
 const RaceButton = styled.button`
   outline: none;
   border: 0px;
@@ -250,7 +256,6 @@ const BetType = styled.div`
   background: #094897;
   transform: skew(-30deg);
 `
-
 const BetText = styled.span`
   color: #ffdd00;
   font-size: 30px;
