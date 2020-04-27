@@ -11,9 +11,9 @@ export const App = () => {
       <Header />
       <Main>
         <GameSection />
-        <div style={{ textAlign: 'center' }}>Image: "Shake It Cerry", by <a href="https://omatg.se/media/#/images/shake-it-cerry-559459"> ATG.se </a>
-        Licensed under  <a href="https://creativecommons.org/licenses/by/2.0/"> CC BY 2.0 </a>
-        </div>
+        <ImageText>
+          <div style={{ textAlign: 'center' }}>Image: "Shake It Cerry", by <Link href="https://omatg.se/media/#/images/shake-it-cerry-559459"> ATG.se</Link> Licensed under <Link href="https://creativecommons.org/licenses/by/2.0/"> CC BY 2.0 </Link></div>
+        </ImageText>
       </Main>
       <Footer>
         Nasim Mahzoun &copy; 2020
@@ -38,6 +38,13 @@ const Header = styled.header`
   grid-area: head;
   background: #094897;
 `
+
+const Link = styled.a`
+  color: black;
+  & :hover, :active {
+    text-decoration: none;
+  }
+`
 const Main = styled.main`
   grid-area: main;
   background: white;
@@ -46,15 +53,20 @@ const Main = styled.main`
   background-repeat: no-repeat;
   background-position: center;
   display: grid;
-  grid-template-rows: auto 30px;
+  grid-template-rows: auto 40px;
   grid-template-columns: 1fr;
   justify-content: center;
-
 `
 const Footer = styled.footer`
   grid-area: foot;
   background: #094897;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const ImageText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

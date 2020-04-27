@@ -83,7 +83,6 @@ const SearchBar = styled.div`
   display: flex;
   align-items: flex-start;
 `
-
 const Section = styled.section`
   display: flex;
   flex-direction: column;
