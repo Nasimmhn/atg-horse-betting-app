@@ -1,6 +1,7 @@
 # ATG.se frontend interview task
 
-Responsive (tested on iPhone and Desktop)
+Responsive - tested on iPhone (Safari) and Desktop (Google Chrome)
+App has been ejected
 
 Libraries used: 
 - Styled-components (https://styled-components.com)
@@ -9,12 +10,8 @@ Libraries used:
 
 ## How to start
 
-1. Clone the repo to your computer using: `git clone https://github.com/Nasimmhn/horse-betting-game.git`
-1. Go to folder: `cd horse-betting-game`
+1. Clone the repo to your computer using: `git clone https://github.com/Nasimmhn/atg-horse-betting-app.git`
+1. Go to folder: `cd atg-horse-betting-app`
 1. Install required dependencies with npm: `npm install`
 1. Start the project: `npm start`
-
-## Linting
-Linting configuration is set in `.eslintrc.json`
-
 
