@@ -10,7 +10,6 @@ import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles'
 import { withStyles } from '@material-ui/core/styles';
 
-import { Divider } from '@material-ui/core'
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -108,15 +107,14 @@ export const Game = ({ gameId, title, betType }) => {
 
       <InfoArea>
         <Title> {title}</Title>
-        <Divider />
         {race &&
           <>
             <RaceGrid>
-              <GridTitle>Number:</GridTitle> <div>{race.number}</div>
-              <GridTitle>Race:</GridTitle> <div>{race.name}</div>
-              <GridTitle>Start time:</GridTitle> <div>{moment(race.startTime).format("HH:MM")}</div>
+              <GridTitle>Number</GridTitle> <GridText>{race.number}</GridText>
+              <GridTitle>Race</GridTitle> <GridText>{race.name}</GridText>
+              <GridTitle>Start time</GridTitle> <GridText>{moment(race.startTime).format("HH:MM")}</GridText>
             </RaceGrid>
-            <Divider light />
+
 
 
             {race.starts.map(start => (
@@ -175,17 +173,20 @@ const StartGrid = styled.div`
 `
 
 const RaceGrid = styled.div`
+  background: #094897;
+  color: white;
+  padding: 15px;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-column-gap: 10px;
+  grid-row-gap: 10px;
 `
 const GridTitle = styled.div`
   font-weight: bold;
   text-align: left;
 `
-
-const GridTextCenter = styled.div`
-  text-align: center;
+const GridText = styled.div`
+  
 `
 
 const GridHeader = styled.div`
@@ -227,6 +228,9 @@ const InfoArea = styled.div`
   box-sizing: border-box;
   width: 650px;
   background: lightblue;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); 
 `
 const GameBar = styled.div`
   position: relative;

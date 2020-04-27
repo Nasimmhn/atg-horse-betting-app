@@ -61,6 +61,7 @@ export const GameSection = () => {
           getOptionLabel={(option) => option.title}
           style={{
             width: 200,
+            margin: '0px auto',
             background: 'white'
           }}
           renderInput={(params) => <TextField {...params} label="Search" variant="filled" />}
@@ -75,17 +76,17 @@ export const GameSection = () => {
 }
 
 const SearchBar = styled.div`
-  background: transparent;
-  padding: 50px 0px 50px 0px;
-  width: 650px;
+  background: #094897;
+  padding: 20px 0px 20px 0px;
+  width: 100%;
+  margin-bottom: 40px;
   display: flex;
   align-items: flex-start;
 `
 
 const Section = styled.section`
-  background: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `
