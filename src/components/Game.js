@@ -111,7 +111,7 @@ export const Game = ({ gameId, title, betType }) => {
           <>
             <RaceGrid>
               <GridTitle>Number</GridTitle> <GridText>{race.number}</GridText>
-              <GridTitle>Race</GridTitle> <GridText>{race.name}</GridText>
+              {race.name && <><GridTitle>Race</GridTitle> <GridText>{race.name}</GridText></>}
               <GridTitle>Start time</GridTitle> <GridText>{moment(race.startTime).format("HH:MM")}</GridText>
             </RaceGrid>
 
@@ -169,7 +169,8 @@ const Title = styled.h3`
 const StartGrid = styled.div`
   display: grid;
   grid-template-columns: 50px 150px auto;
-  grid-gap: 10px;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 `
 
 const RaceGrid = styled.div`
@@ -178,7 +179,7 @@ const RaceGrid = styled.div`
   padding: 15px;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-column-gap: 10px;
+  grid-column-gap: 20px;
   grid-row-gap: 10px;
 `
 const GridTitle = styled.div`
