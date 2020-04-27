@@ -76,11 +76,10 @@ export const GameSection = () => {
 
 const SearchBar = styled.div`
   background: transparent;
-  padding: 25px 0px;
-  width: 100%;
+  padding: 50px 0px 50px 0px;
+  width: 650px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
 `
 
 const Section = styled.section`
