@@ -12,7 +12,7 @@ export const App = () => {
       <Main>
         <GameSection />
         <ImageText>
-          <div style={{ textAlign: 'center' }}>Image: "Shake It Cerry", by <Link href="https://omatg.se/media/#/images/shake-it-cerry-559459"> ATG</Link> Licensed under <Link href="https://creativecommons.org/licenses/by/2.0/"> CC</Link></div>
+          <div style={{ textAlign: 'center' }}>Image: &quot;Shake It Cerry&quot;, by <Link href="https://omatg.se/media/#/images/shake-it-cerry-559459"> ATG</Link> Licensed under <Link href="https://creativecommons.org/licenses/by/2.0/"> CC</Link></div>
         </ImageText>
       </Main>
       <Footer>

@@ -7,8 +7,7 @@ import styled from 'styled-components/macro'
 import moment from 'moment'
 
 // Material UI
-import { makeStyles } from '@material-ui/core/styles'
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -20,13 +19,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 // Styling of Material UI Expansion panel
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: '100%'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
     padding: '0px'
-  },
+  }
 }))
 
 const ExpansionPanel = withStyles({
@@ -34,16 +33,16 @@ const ExpansionPanel = withStyles({
     border: '1px solid rgba(0, 0, 0, .125)',
     boxShadow: 'none',
     '&:not(:last-child)': {
-      borderBottom: 0,
+      borderBottom: 0
     },
     '&:before': {
-      display: 'none',
+      display: 'none'
     },
     '&$expanded': {
-      margin: 'auto',
-    },
+      margin: 'auto'
+    }
   },
-  expanded: {},
+  expanded: {}
 })(MuiExpansionPanel);
 
 const ExpansionPanelSummary = withStyles({
@@ -53,22 +52,22 @@ const ExpansionPanelSummary = withStyles({
     marginBottom: -1,
     minHeight: 56,
     '&$expanded': {
-      minHeight: 56,
-    },
+      minHeight: 56
+    }
   },
   content: {
     '&$expanded': {
-      margin: '12px 0',
-    },
+      margin: '12px 0'
+    }
   },
-  expanded: {},
+  expanded: {}
 })(MuiExpansionPanelSummary);
 
 const ExpansionPanelDetails = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiExpansionPanelDetails);
+    padding: theme.spacing(2)
+  }
+}))(MuiExpansionPanelDetails)
 
 export const Game = ({ gameId, title, betType }) => {
   const classes = useStyles();
@@ -83,79 +82,69 @@ export const Game = ({ gameId, title, betType }) => {
         setGameData(json)
         setRace(json.races[0])
       })
-
   }, [gameId])
 
   const handleClick = (value) => {
-    setRace(gameData.races.filter(item => item.id === value)[0])
+    setRace(gameData.races.filter((item) => item.id === value)[0])
   }
 
   return (
     <Container>
       <GameBar>
-        {gameData &&
-          <>
-            <BetType><BetText>{betType}</BetText></BetType>
-            {gameData.races.map(race => (
-              <RaceButton key={race.id} onClick={(e) => handleClick(race.id)}>
-                <ButtonText>{race.number}</ButtonText>
-              </RaceButton>
-            ))}
-            <BetType></BetType>
-          </>
-        }
+        <BetType><BetText>{betType}</BetText></BetType>
+        {gameData && gameData.races.map((raceItem) => (
+          <RaceButton key={raceItem.id} onClick={() => handleClick(raceItem.id)}>
+            <ButtonText>{raceItem.number}</ButtonText>
+          </RaceButton>
+        ))}
+        <BetType />
       </GameBar>
 
       <InfoArea>
 
-        {race &&
-          <>
-            <RaceHeader>
-              <Title> {title}</Title><div></div>
-              <RaceGrid>
-                <GridTitle>Number</GridTitle> <GridText>{race.number}</GridText>
-                <GridTitle>Start time</GridTitle> <GridText>{moment(race.startTime).format("HH:MM")}</GridText>
-                {race.name && <><GridTitle>Race</GridTitle> <GridText>{race.name}</GridText></>}
+        <>
+          <RaceHeader>
+            <Title> {title}</Title><div />
+            <RaceGrid>
+              <GridTitle>Number</GridTitle> <GridText>{race && race.number}</GridText>
+              <GridTitle>Start time</GridTitle> <GridText>{race && moment(race.startTime).format('HH:MM')}</GridText>
+              {race && <><GridTitle>Race</GridTitle> <GridText>{race.name}</GridText></>}
 
-              </RaceGrid>
-            </RaceHeader>
+            </RaceGrid>
+          </RaceHeader>
 
-            {race.starts.map(start => (
-              <React.Fragment key={start.number}>
-                <ExpansionPanel>
-                  <ExpansionPanelSummary
-                    expandIcon={<ExpandMoreIcon />}
-                  >
-                    <Typography component={'span'} className={classes.heading}>
-                      <StartGrid>
-                        <GridHeader>No.</GridHeader>
-                        <GridHeader>Horse </GridHeader>
-                        <GridHeader>Driver </GridHeader>
-                        <div>{start.number}</div>
-                        <div>{start.horse.name}</div>
-                        <div>{start.driver.firstName} {start.driver.lastName} </div>
-                      </StartGrid>
-                    </Typography>
-                  </ExpansionPanelSummary>
-                  <ExpansionPanelDetails>
-                    <Typography component={'span'}>
-                      <StartGrid>
-                        <div></div>
-                        <GridHeader> Horse father </GridHeader>
-                        <GridHeader> Trainer </GridHeader>
-                        <div></div>
-                        <span>{start.horse.pedigree.father.name}</span>
-                        <span>{start.horse.trainer.firstName} {start.horse.trainer.lastName}</span>
+          {race && race.starts.map((start) => (
+            <React.Fragment key={start.number}>
+              <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography component="span" className={classes.heading}>
+                    <StartGrid>
+                      <GridHeader>No.</GridHeader>
+                      <GridHeader>Horse </GridHeader>
+                      <GridHeader>Driver </GridHeader>
+                      <div>{start.number}</div>
+                      <div>{start.horse.name}</div>
+                      <div>{start.driver.firstName} {start.driver.lastName} </div>
+                    </StartGrid>
+                  </Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                  <Typography component="span">
+                    <StartGrid>
+                      <div />
+                      <GridHeader> Horse father </GridHeader>
+                      <GridHeader> Trainer </GridHeader>
+                      <div />
+                      <span>{start.horse.pedigree.father.name}</span>
+                      <span>{start.horse.trainer.firstName} {start.horse.trainer.lastName}</span>
 
-                      </StartGrid>
-                    </Typography>
-                  </ExpansionPanelDetails>
-                </ExpansionPanel>
-              </React.Fragment>
-            ))}
-
-          </>
-        }
+                    </StartGrid>
+                  </Typography>
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
+            </React.Fragment>
+          ))}
+        </>
       </InfoArea>
     </Container>
   )
