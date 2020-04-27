@@ -91,16 +91,17 @@ export const Game = ({ gameId, title, betType }) => {
   }
 
   return (
-    <>
+    <Container>
       <GameBar>
         {gameData &&
           <>
             <BetType><BetText>{betType}</BetText></BetType>
             {gameData.races.map(race => (
               <RaceButton key={race.id} onClick={(e) => handleClick(race.id)}>
-                <RaceText>{race.number}</RaceText>
+                <ButtonText>{race.number}</ButtonText>
               </RaceButton>
             ))}
+            <BetType></BetType>
           </>
         }
       </GameBar>
@@ -113,11 +114,11 @@ export const Game = ({ gameId, title, betType }) => {
               <Title> {title}</Title><div></div>
               <RaceGrid>
                 <GridTitle>Number</GridTitle> <GridText>{race.number}</GridText>
-                {race.name && <><GridTitle>Race</GridTitle> <GridText>{race.name}</GridText></>}
                 <GridTitle>Start time</GridTitle> <GridText>{moment(race.startTime).format("HH:MM")}</GridText>
+                {race.name && <><GridTitle>Race</GridTitle> <GridText>{race.name}</GridText></>}
+
               </RaceGrid>
             </RaceHeader>
-
 
             {race.starts.map(start => (
               <React.Fragment key={start.number}>
@@ -125,11 +126,11 @@ export const Game = ({ gameId, title, betType }) => {
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
                   >
-                    <Typography className={classes.heading}>
+                    <Typography component={'span'} className={classes.heading}>
                       <StartGrid>
-                        <GridHeader> No.</GridHeader>
-                        <GridHeader> Horse </GridHeader>
-                        <GridHeader> Driver </GridHeader>
+                        <GridHeader>No.</GridHeader>
+                        <GridHeader>Horse </GridHeader>
+                        <GridHeader>Driver </GridHeader>
                         <div>{start.number}</div>
                         <div>{start.horse.name}</div>
                         <div>{start.driver.firstName} {start.driver.lastName} </div>
@@ -137,7 +138,7 @@ export const Game = ({ gameId, title, betType }) => {
                     </Typography>
                   </ExpansionPanelSummary>
                   <ExpansionPanelDetails>
-                    <Typography>
+                    <Typography component={'span'}>
                       <StartGrid>
                         <div></div>
                         <GridHeader> Horse father </GridHeader>
@@ -156,7 +157,7 @@ export const Game = ({ gameId, title, betType }) => {
           </>
         }
       </InfoArea>
-    </>
+    </Container>
   )
 }
 const Title = styled.h3`
@@ -170,24 +171,23 @@ const Title = styled.h3`
   font-style: italic;
 `
 const StartGrid = styled.div`
+  margin-left: 13px;
   display: grid;
-  grid-template-columns: 50px 150px auto;
+  grid-template-columns: 80px 220px auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 `
-
 const RaceHeader = styled.div`
-  height: 180px;
-  border-radius: 5px 5px 0px 0px;
   background: #094897;
 `
-
 const RaceGrid = styled.div`
+  font-size: 1.2em;
   color: white;
+  margin: 0px 0px 0px 10px;
   padding: 15px;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto 50px;
   grid-column-gap: 20px;
   grid-row-gap: 10px;
 `
@@ -204,10 +204,51 @@ const GridHeader = styled.div`
   color: darkgray;
   font-weight: bold;
 `
+const InfoArea = styled.div`
+  box-sizing: border-box;
+`
+const Container = styled.div`
+  box-sizing: border-box;
+  width: 650px;
+  -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+`
+const GameBar = styled.div`
+  border-radius: 10px 10px 0px 0px;
+  background: #094897;
+  height: 70px;
+  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 110px repeat(7, 1fr) 25px;
+  border-bottom: 1px solid gray;
+  && button:first-of-type{
+    border-left: 1px solid gray;
+  }
+`
+const BetType = styled.div`
+  padding: 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+`
+const BetText = styled.span`
+  color: #ffdd00;
+  font-weight: bold;
+  font-size: 40px;
+
+`
+
+const ButtonText = styled.span`
+  color: white;
+  font-size: 18px;
+  transform: skew(30deg);
+`
+
 const RaceButton = styled.button`
   outline: none;
   border: 0px;
-  border-left: 1px gray solid;
   border-right: 1px gray solid;
   padding: 0px 10px;
   display: flex;
@@ -216,48 +257,13 @@ const RaceButton = styled.button`
   background: #094897;
   transform: skew(-30deg);
   && :hover{
-    background: lightblue;
+    background: #0b5dc1;
     cursor: pointer;
     border-bottom: #ffdd00 3px solid; 
   }
   && :focus{
+    background: #0b5dc1;
     border-bottom: #ffdd00 3px solid; 
     transition-duration: 250ms;
   }
-`
-const RaceText = styled.span`
-  color: white;
-  font-size: 18px;
-  transform: skew(30deg);
-`
-const InfoArea = styled.div`
-  padding: 20px;
-  box-sizing: border-box;
-  width: 650px;
-  background: lightblue;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); 
-`
-const GameBar = styled.div`
-  position: relative;
-  width: 650px;
-  height: 50px;
-  justify-content: flex-start;
-  display: grid;
-  grid-template-columns: 75px repeat(7, 1fr);
-  left: 14px;
-`
-const BetType = styled.div`
-  padding: 0px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #094897;
-  transform: skew(-30deg);
-`
-const BetText = styled.span`
-  color: #ffdd00;
-  font-size: 30px;
-  transform: skew(30deg);
 `
