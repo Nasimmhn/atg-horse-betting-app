@@ -6,6 +6,9 @@ import styled from 'styled-components/macro'
 // Moment.js
 import moment from 'moment'
 
+// Material UI
+import { Divider } from '@material-ui/core';
+
 
 export const Game = ({ gameId, title, betType }) => {
   const [gameData, setGameData] = useState(null)
@@ -42,7 +45,7 @@ export const Game = ({ gameId, title, betType }) => {
 
       <InfoArea>
         <Title> {title}</Title>
-        <hr />
+        <Divider />
         {race &&
           <>
             <RaceGrid>
@@ -50,7 +53,7 @@ export const Game = ({ gameId, title, betType }) => {
               <GridTitle>Race:</GridTitle> <div>{race.name}</div>
               <GridTitle>Start time:</GridTitle> <div>{moment(race.startTime).format("HH:MM")}</div>
             </RaceGrid>
-            <hr />
+            <Divider light />
             <StartGrid>
               <GridHeader>Number</GridHeader>
               <GridHeader>Horse</GridHeader>
@@ -81,6 +84,7 @@ const Title = styled.h3`
   padding: 5px;
   color: #094897;
   font-size: 30px;
+  font-style: italic;
 `
 const StartGrid = styled.div`
   display: grid;
@@ -95,7 +99,7 @@ const RaceGrid = styled.div`
 `
 const GridTitle = styled.div`
   font-weight: bold;
-  text-align: right;
+  text-align: left;
 `
 
 const GridTextCenter = styled.div`
@@ -110,7 +114,6 @@ const GridHeader = styled.div`
 
 const RaceButton = styled.button`
   outline: none;
-  padding: 0px;
   border: 0px;
   border-left: 1px gray solid;
   border-right: 1px gray solid;
@@ -120,8 +123,14 @@ const RaceButton = styled.button`
   justify-content: center;
   background: #094897;
   transform: skew(-30deg);
-  && :hover, :focus{
+  && :hover{
     background: lightblue;
+    cursor: pointer;
+    border-bottom: #ffdd00 3px solid; 
+  }
+  && :focus{
+    border-bottom: #ffdd00 3px solid; 
+    transition-duration: 250ms;
   }
 `
 const RaceText = styled.span`
@@ -130,14 +139,14 @@ const RaceText = styled.span`
   transform: skew(30deg);
 `
 const InfoArea = styled.div`
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
-  width: 520px;
+  width: 650px;
   background: lightblue;
 `
 const GameBar = styled.div`
   position: relative;
-  width: 520px;
+  width: 650px;
   height: 50px;
   justify-content: flex-start;
   display: grid;
