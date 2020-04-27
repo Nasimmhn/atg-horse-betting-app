@@ -7,10 +7,29 @@ import styled from 'styled-components/macro'
 import moment from 'moment'
 
 // Material UI
-import { Divider } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles'
+import { Divider } from '@material-ui/core'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
+import Typography from '@material-ui/core/Typography'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
+// Styling of Material UI Expansion panel
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+    padding: '0px'
+  },
+}))
 
 export const Game = ({ gameId, title, betType }) => {
+  const classes = useStyles();
+
   const [gameData, setGameData] = useState(null)
   const [race, setRace] = useState(null)
 
@@ -54,23 +73,42 @@ export const Game = ({ gameId, title, betType }) => {
               <GridTitle>Start time:</GridTitle> <div>{moment(race.startTime).format("HH:MM")}</div>
             </RaceGrid>
             <Divider light />
-            <StartGrid>
-              <GridHeader>Number</GridHeader>
-              <GridHeader>Horse</GridHeader>
-              <GridHeader>Driver</GridHeader>
-              <GridHeader>Trainer</GridHeader>
-              <GridHeader>Horse father</GridHeader>
-              {race.starts.map(start => (
-                <React.Fragment key={start.number}>
-                  <GridTextCenter>{start.number}</GridTextCenter>
-                  <div>{start.horse.name}</div>
-                  <div>{start.driver.firstName} {start.driver.lastName} </div>
-                  <div>{start.horse.trainer.firstName} {start.horse.trainer.lastName}</div>
-                  <div>{start.horse.pedigree.father.name}</div>
 
-                </React.Fragment>
-              ))}
-            </StartGrid>
+
+            {race.starts.map(start => (
+              <React.Fragment key={start.number}>
+                <ExpansionPanel>
+                  <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                  >
+                    <Typography className={classes.heading}>
+                      <StartGrid>
+                        <GridHeader> No.</GridHeader>
+                        <GridHeader> Horse </GridHeader>
+                        <GridHeader> Driver </GridHeader>
+                        <div>{start.number}</div>
+                        <div>{start.horse.name}</div>
+                        <div>{start.driver.firstName} {start.driver.lastName} </div>
+                      </StartGrid>
+                    </Typography>
+                  </ExpansionPanelSummary>
+                  <ExpansionPanelDetails>
+                    <Typography>
+                      <StartGrid>
+                        <div></div>
+                        <GridHeader> Horse father </GridHeader>
+                        <GridHeader> Trainer </GridHeader>
+                        <div></div>
+                        <span>{start.horse.pedigree.father.name}</span>
+                        <span>{start.horse.trainer.firstName} {start.horse.trainer.lastName}</span>
+
+                      </StartGrid>
+                    </Typography>
+                  </ExpansionPanelDetails>
+                </ExpansionPanel>
+              </React.Fragment>
+            ))}
+
           </>
         }
       </InfoArea>
@@ -88,7 +126,7 @@ const Title = styled.h3`
 `
 const StartGrid = styled.div`
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: 50px 150px auto;
   grid-gap: 10px;
 `
 
@@ -107,9 +145,11 @@ const GridTextCenter = styled.div`
 `
 
 const GridHeader = styled.div`
-  color: black;
+  margin: 0px;
+  padding: 0px;
+  font-size: 0.7em;
+  color: darkgray;
   font-weight: bold;
-  text-align: left;
 `
 
 const RaceButton = styled.button`
